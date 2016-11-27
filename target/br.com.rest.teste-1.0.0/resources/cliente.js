@@ -1,8 +1,8 @@
-$(document).ready(function(){
-  $("button").click(function(){
-    $.getJSON('rest/cliente', function(data, status){
-      alert("Nome: " + data[0].nome + "\nStatus: " + status);
-      });
+$(document).ready(function () {
+    $("button").click(function () {
+        $.getJSON('rest/pessoa', function (data, status) {
+            alert("Nome: " + data[0].nome + "\nStatus: " + status);
+        });
     });
-  });
+});
 

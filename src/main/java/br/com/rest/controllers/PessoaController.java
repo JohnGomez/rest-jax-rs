@@ -9,12 +9,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import org.hibernate.Session;
 
-@Path("cliente")
-public class HelloWorld {
+@Path("pessoa")
+public class PessoaController {
 	
 	@GET
 	@Produces({"application/json"})
-	public List<Pessoa> hello(){
+	public List<Pessoa> listar(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
                 List<Pessoa> pessoas = session.createCriteria(Pessoa.class).list();
                 session.close();
