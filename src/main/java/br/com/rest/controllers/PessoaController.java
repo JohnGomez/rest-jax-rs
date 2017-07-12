@@ -1,7 +1,7 @@
 package br.com.rest.controllers;
 
+import br.com.rest.entidades.Pessoa;
 import br.com.rest.util.HibernateUtil;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;

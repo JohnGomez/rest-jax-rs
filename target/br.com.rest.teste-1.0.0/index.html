@@ -1,13 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="home">
 
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="resources/cliente.js"></script>
+        <meta charset="utf-8"/>
+        <!-- Latest compiled and minified JavaScript -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="resources/theme/js/home.js"></script>
+        <script src="resources/theme/js/home.controller.js"></script>
+        <script src="resources/theme/js/home.factory.js"></script>
     </head>
-    <body>
-        <h3>Consulta rest teste</h3>
-        <button>Consultar</button>
+    <body ng-controller="homeController" >
+
+        <div class="container">
+            <table class="table">
+                <thead>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Quantidade</th>
+                <th>Opções</th>
+                </thead>
+                <tbody ng-repeat="produto in produtos">
+                <td>{{produto.id}}</td>
+                <td>{{produto.nome}}</td>
+                <td>{{produto.descricao}}</td>
+                <td>{{produto.valor}}</td>
+                <td>{{produto.quantidade}}</td>
+                <td><button class="btn btn-sm btn-danger" id="delete" ng-click="removerProduto(produto.id)">Remover</button></td>
+                </tbody>
+            </table>
+
+            <fieldset>
+                <div class="panel panel-default" style="width: 70%">
+                    <h3>Cadastro</h3>
+                    <div class="container-fluid">
+                        <fieldset>
+                            <form ng-submit="addProduto()">
+                                <div class="form-group">
+                                    <label for="nome">Nome do Produto</label>
+                                    <input id="nome" class="form-control" type="text" ng-model="novoProduto.nome">    
+                                </div>
+                                <div class="form-group">
+                                    <label for="descricao">Descrição do produto</label>
+                                    <input id="descricao" class="form-control" type="text" ng-model="novoProduto.descricao">
+                                </div> 
+
+                                <div class="form-group">
+                                    <label for="imagem">Url da imagem do produto</label>
+                                    <input id="imagem" class="form-control" type="text" ng-model="novoProduto.imagem">
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantidade">Quantidade em estoque</label>
+                                    <input id="quantidade" class="form-control" type="number" ng-model="novoProduto.quantidade">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-sm"> Confirmar</button>
+                            </form>      
+                        </fieldset>
+                    </div>    
+                </div>
+            </fieldset>
+
+        </div>
+
     </body>
 </html>
