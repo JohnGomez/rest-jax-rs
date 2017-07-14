@@ -13,7 +13,7 @@ angular.module("home").factory("Produtos", function ($q, $http) {
             );
             return r.promise;
         }
-    };
 
+    };
 });
 

@@ -6,9 +6,15 @@
         <!-- Latest compiled and minified JavaScript -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="resources/theme/css/style.css" rel="stylesheet" type="text/css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+        <!-- NG _TABLE -->
+        <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+        <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+
         <script src="resources/theme/js/home.js"></script>
         <script src="resources/theme/js/home.controller.js"></script>
         <script src="resources/theme/js/home.factory.js"></script>
@@ -16,16 +22,21 @@
     <body ng-controller="homeController" >
 
         <div class="container">
-            <table class="table">
+            <div class='container' style="width: 50%">
+                <input type='text' class="form-control" ng-model="procurar" />    
+            </div>
+
+            <table class="table" ng-table="tablePagginator" show-filter="true">
                 <thead>
-                <th>Código</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Valor</th>
+                <th><a href="#" ng-click="sortType = 'id'">Código</a></th>
+                <th><a href="#" ng-click="sortType = 'nome'">Nome</a></th>
+                <th><a href="#" ng-click="sortType = 'descricao'">Descrição</a></th>
+                <th><a href="#" ng-click="sortType = 'valor'">Valor</a></th>
                 <th>Quantidade</th>
                 <th>Opções</th>
                 </thead>
-                <tbody ng-repeat="produto in produtos">
+                
+                <tbody ng-repeat="produto in produtos| orderBy:sortType:sortReverse | filter:procurar">
                 <td>{{produto.id}}</td>
                 <td>{{produto.nome}}</td>
                 <td>{{produto.descricao}}</td>
@@ -35,37 +46,39 @@
                 </tbody>
             </table>
 
-            <fieldset>
-                <div class="panel panel-default" style="width: 70%">
-                    <h3>Cadastro</h3>
+
+            <div style="visible:none" class="panel panel-default" style="width: 70%">
+                <div class="panel-body">
+                    <h4>Cadastro</h4>
                     <div class="container-fluid">
-                        <fieldset>
-                            <form ng-submit="addProduto()">
-                                <div class="form-group">
-                                    <label for="nome">Nome do Produto</label>
-                                    <input id="nome" class="form-control" type="text" ng-model="novoProduto.nome">    
-                                </div>
-                                <div class="form-group">
-                                    <label for="descricao">Descrição do produto</label>
-                                    <input id="descricao" class="form-control" type="text" ng-model="novoProduto.descricao">
-                                </div> 
 
-                                <div class="form-group">
-                                    <label for="imagem">Url da imagem do produto</label>
-                                    <input id="imagem" class="form-control" type="text" ng-model="novoProduto.imagem">
-                                </div>
-                                <div class="form-group">
-                                    <label for="quantidade">Quantidade em estoque</label>
-                                    <input id="quantidade" class="form-control" type="number" ng-model="novoProduto.quantidade">
-                                </div>
+                        <div id="loading" class="circle"></div>
 
-                                <button type="submit" class="btn btn-primary btn-sm"> Confirmar</button>
-                            </form>      
-                        </fieldset>
-                    </div>    
+                        <form ng-submit="addProduto()">
+                            <div class="form-group">
+                                <label for="nome">Nome do Produto</label>
+                                <input id="nome" class="form-control" type="text" ng-model="novoProduto.nome">    
+                            </div>
+                            <div class="form-group">
+                                <label for="descricao">Descrição do produto</label>
+                                <input id="descricao" class="form-control" type="text" ng-model="novoProduto.descricao">
+                            </div> 
+
+                            <div class="form-group">
+                                <label for="imagem">Url da imagem do produto</label>
+                                <input id="imagem" class="form-control" type="text" ng-model="novoProduto.imagem">
+                            </div>
+                            <div class="form-group">
+                                <label for="quantidade">Quantidade em estoque</label>
+                                <input id="quantidade" class="form-control" type="number" ng-model="novoProduto.quantidade">
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-sm"> Confirmar</button>
+                            <a  class="btn btn-default btn-sm" href="#" ng-click="removerProduto(1)"> Cancelar</a>
+                        </form>  
+                    </div> 
                 </div>
-            </fieldset>
-
+            </div>
         </div>
 
     </body>

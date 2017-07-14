@@ -89,5 +89,5 @@ public class Produto implements Serializable {
     public String toString() {
         return "entidades.Produto[ id=" + id + " ]";
     }
-    
+  
 }
