@@ -9,16 +9,24 @@
 
         <!-- CSS custom -->
         <link href="resources/theme/css/style.css" rel="stylesheet" type="text/css">
+        <link href="resources/theme/css/diff.css" rel="stylesheet" type="text/css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
 
         <script src="resources/theme/js/bootstrap.min.js"></script>
         <script src="resources/theme/js/home.js"></script>
         <script src="resources/theme/js/home.controller.js"></script>
         <script src="resources/theme/js/home.factory.js"></script>
+        <script src="node_modules/angular-diff-match-patch/diff_match_patch.js"></script>
+        <script src="node_modules/angular-diff-match-patch/angular-diff-match-patch.js"></script>
+        
     </head>
     <body ng-controller="homeController" >
+
+        <h4>{{left}}</h4>
+        <pre class="textdiff" line-diff="" left-obj="left" right-obj="right"></pre>
 
         <div class="container">
             <div class='container' style="width: 50%">
@@ -47,8 +55,8 @@
 
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                Launch demo modal
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-backdrop="static">
+                modal
             </button>
 
             <!-- Modal -->

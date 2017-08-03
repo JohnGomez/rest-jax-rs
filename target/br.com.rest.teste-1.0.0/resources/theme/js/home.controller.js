@@ -25,6 +25,9 @@ app.controller('homeController', function ($scope, Produtos) {
             }
         });
     }
+    
+    $scope.left = 'john gomes da silva';
+    $scope.right = 'luiza mellor gomes';
 });
 
 
